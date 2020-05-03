@@ -1,5 +1,5 @@
-name: flutter_login_demo
-description: A new Flutter project.
+name: momentum_app
+description: Momentum
 
 dependencies:
   flutter:
@@ -20,3 +20,10 @@ flutter:
   assets:
     - assets/
     - assets/graphics/
+    - assets/fonts/
+  fonts:
+    - family: SFPro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Text-Regular.otf
+        - asset: assets/fonts/SF-Pro-Text-Bold.otf
+          weight: 400

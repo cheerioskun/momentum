@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
+import 'package:momentum_app/services/authentication.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_login_demo/models/todo.dart';
+import 'package:momentum_app/models/todo.dart';
 import 'dart:async';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
   final String userId;
 
   @override
-  State<StatefulWidget> createState() => new _HomePageState();
+  State<StatefulWidget> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
     //_checkEmailVerification();
 
-    _todoList = new List();
+    _todoList = List();
     _todoQuery = _database
         .reference()
         .child("todo")
@@ -65,18 +65,18 @@ class _HomePageState extends State<HomePage> {
 //      builder: (BuildContext context) {
 //        // return object of type Dialog
 //        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content: new Text("Please verify account in the link sent to email"),
+//          title: Text("Verify your account"),
+//          content: Text("Please verify account in the link sent to email"),
 //          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Resent link"),
+//            FlatButton(
+//              child: Text("Resent link"),
 //              onPressed: () {
 //                Navigator.of(context).pop();
 //                _resentVerifyEmail();
 //              },
 //            ),
-//            new FlatButton(
-//              child: new Text("Dismiss"),
+//            FlatButton(
+//              child: Text("Dismiss"),
 //              onPressed: () {
 //                Navigator.of(context).pop();
 //              },
@@ -93,11 +93,11 @@ class _HomePageState extends State<HomePage> {
 //      builder: (BuildContext context) {
 //        // return object of type Dialog
 //        return AlertDialog(
-//          title: new Text("Verify your account"),
-//          content: new Text("Link to verify account has been sent to your email"),
+//          title: Text("Verify your account"),
+//          content: Text("Link to verify account has been sent to your email"),
 //          actions: <Widget>[
-//            new FlatButton(
-//              child: new Text("Dismiss"),
+//            FlatButton(
+//              child: Text("Dismiss"),
 //              onPressed: () {
 //                Navigator.of(context).pop();
 //              },
@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
 
   addNewTodo(String todoItem) {
     if (todoItem.length > 0) {
-      Todo todo = new Todo(todoItem.toString(), widget.userId, false);
+      Todo todo = Todo(todoItem.toString(), widget.userId, false);
       _database.reference().child("todo").push().set(todo.toJson());
     }
   }
@@ -171,25 +171,25 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: new Row(
+            content: Row(
               children: <Widget>[
-                new Expanded(
-                    child: new TextField(
+                Expanded(
+                    child: TextField(
                   controller: _textEditingController,
                   autofocus: true,
-                  decoration: new InputDecoration(
-                    labelText: 'Add new todo',
+                  decoration: InputDecoration(
+                    labelText: 'Add todo',
                   ),
                 ))
               ],
             ),
             actions: <Widget>[
-              new FlatButton(
+              FlatButton(
                   child: const Text('Cancel'),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              new FlatButton(
+              FlatButton(
                   child: const Text('Save'),
                   onPressed: () {
                     addNewTodo(_textEditingController.text.toString());
@@ -212,7 +212,7 @@ class _HomePageState extends State<HomePage> {
             String userId = _todoList[index].userId;
             return Dismissible(
               key: Key(todoId),
-              background: Container(color: Colors.red),
+              background: Container(),
               onDismissed: (direction) async {
                 deleteTodo(todoId, index);
               },
@@ -225,10 +225,9 @@ class _HomePageState extends State<HomePage> {
                     icon: (completed)
                         ? Icon(
                             Icons.done_outline,
-                            color: Colors.green,
                             size: 20.0,
                           )
-                        : Icon(Icons.done, color: Colors.grey, size: 20.0),
+                        : Icon(Icons.done, size: 20.0),
                     onPressed: () {
                       updateTodo(_todoList[index]);
                     }),
@@ -247,13 +246,13 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Flutter login demo'),
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter login demo'),
           actions: <Widget>[
-            new FlatButton(
-                child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+            FlatButton(
+                child: Text('Logout',
+                    style: TextStyle(fontSize: 17.0)),
                 onPressed: signOut)
           ],
         ),

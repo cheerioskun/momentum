@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
-import 'package:flutter_login_demo/pages/root_page.dart';
+import 'package:momentum_app/services/authentication.dart';
+import 'package:momentum_app/pages/root_page.dart';
+import 'package:momentum_app/models/dark_flavor.dart';
 
 void main() {
-  runApp(new MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-        title: 'Flutter login demo',
+    return MaterialApp(
+        title: 'Hello',
         debugShowCheckedModeBanner: false,
-        theme: new ThemeData(
-          primarySwatch: Colors.red,
-        ),
-        home: new RootPage(auth: new Auth()));
+        darkTheme: DarkFlavor.theme(),
+        
+        home: RootPage(auth: Auth()));
   }
 }

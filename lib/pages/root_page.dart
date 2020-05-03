@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_login_demo/pages/login_signup_page.dart';
-import 'package:flutter_login_demo/services/authentication.dart';
-import 'package:flutter_login_demo/pages/home_page.dart';
+import 'package:momentum_app/pages/login_signup_page.dart';
+import 'package:momentum_app/services/authentication.dart';
+import 'package:momentum_app/pages/home_page.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -15,7 +15,7 @@ class RootPage extends StatefulWidget {
   final BaseAuth auth;
 
   @override
-  State<StatefulWidget> createState() => new _RootPageState();
+  State<StatefulWidget> createState() => _RootPageState();
 }
 
 class _RootPageState extends State<RootPage> {
@@ -83,10 +83,10 @@ class _RootPageState extends State<RootPage> {
             logoutCallback: logoutCallback,
           );
         } else
-          return buildWaitingScreen();
+          return Container(width: 0, height: 0);
         break;
       default:
-        return buildWaitingScreen();
+        return Container(width: 0, height: 0);
     }
   }
 }
