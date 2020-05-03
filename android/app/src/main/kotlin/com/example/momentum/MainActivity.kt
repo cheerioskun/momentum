@@ -1,4 +1,4 @@
-package com.example.momentum
+package com.projects.momentum_app
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
