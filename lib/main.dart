@@ -3,7 +3,7 @@ import 'package:momentum_app/pages/login_signup_page.dart';
 import 'package:momentum_app/services/authentication.dart';
 import 'package:momentum_app/pages/root_page.dart';
 import 'package:momentum_app/models/dark_flavor.dart';
-import 'package:momentum_app/pages/login_signup_page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -25,10 +25,18 @@ class MyApp extends StatelessWidget {
               );
               break;
             case '/login_signup':
+              LoginArguments args = settings.arguments;
               return MaterialPageRoute(
-                builder: (context) => LoginSignupPage(auth: settings.arguments.auth, ))
+                builder: (context) => LoginSignupPage(auth: args.auth, loginCallback: args.callBack)
+              );
+            case '/welcome':
+              return MaterialPageRoute(
+                builder: (_) => WelcomePage()
+              )
+            default:
+              return MaterialPageRoute(builder: (_) => ErrorPage());
           }
-
+          
         },
     );
   }
