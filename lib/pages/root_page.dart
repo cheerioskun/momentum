@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:momentum_app/models/argument_wrappers.dart';
+import 'package:momentum_app/pages/welcome_page.dart';
 import 'package:momentum_app/services/authentication.dart';
-import 'package:momentum_app/pages/home_page.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,
@@ -11,7 +11,6 @@ enum AuthStatus {
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
-
   final BaseAuth auth;
 
   @override
@@ -70,7 +69,7 @@ class _RootPageState extends State<RootPage> {
         return buildWaitingScreen();
         break;
       case AuthStatus.NOT_LOGGED_IN:
-        Navigator.of(context).pushNamed('/login_signup', arguments: LoginArguments(auth: widget.auth, callBack: loginCallback, userId: ""));
+        return WelcomePage(arguments: LoginArguments(auth: widget.auth, callBack: loginCallback, userId: ""));
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
@@ -84,9 +83,3 @@ class _RootPageState extends State<RootPage> {
   }
 }
 
-class LoginArguments{
-  LoginArguments({this.auth, this.callBack, this.userId});
-  final BaseAuth auth;
-  final Function callBack;
-  final String userId;
-}

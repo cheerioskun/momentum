@@ -93,6 +93,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("HERE!");
     return Scaffold(
       body: Stack(
         children: <Widget>[
