@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:momentum_app/pages/login_signup_page.dart';
+
 import 'package:momentum_app/services/authentication.dart';
 import 'package:momentum_app/pages/home_page.dart';
 
@@ -70,23 +70,23 @@ class _RootPageState extends State<RootPage> {
         return buildWaitingScreen();
         break;
       case AuthStatus.NOT_LOGGED_IN:
-        return new LoginSignupPage(
-          auth: widget.auth,
-          loginCallback: loginCallback,
-        );
+        Navigator.of(context).pushNamed('/login_signup', arguments: LoginArguments(auth: widget.auth, callBack: loginCallback, userId: ""));
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return new HomePage(
-            userId: _userId,
-            auth: widget.auth,
-            logoutCallback: logoutCallback,
-          );
-        } else
-          return Container(width: 0, height: 0);
+          Navigator.of(context).pushNamed('/feed', arguments: {'userId': _userId, 'auth': widget.auth, 'logoutCallback': logoutCallback}); 
+        }
         break;
       default:
-        return Container(width: 0, height: 0);
+        
     }
+    return Container(width: 0, height: 0);
   }
+}
+
+class LoginArguments{
+  LoginArguments({this.auth, this.callBack, this.userId});
+  final BaseAuth auth;
+  final Function callBack;
+  final String userId;
 }
