@@ -64,6 +64,10 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           _formKey.currentState.reset();
         });
       }
+    }else{
+      setState(() {
+          _isLoading = false;
+        });
     }
   }
 
@@ -152,8 +156,11 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         padding: EdgeInsets.fromLTRB(0.0, 70.0, 0.0, 0.0),
         child: CircleAvatar(
           backgroundColor: Colors.transparent,
-          radius: 48.0,
-          child: Image.asset('assets/graphics/stack.png'),
+          radius: 80.0,
+          child: Image.asset('assets/graphics/hero.png',
+            color: Color.fromRGBO(255, 255, 255, 0.4),
+            colorBlendMode: BlendMode.modulate,
+          ),
         ),
       ),
     );
@@ -161,7 +168,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(30.0, 10.0, 50.0, 0.0),
       child: TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
@@ -170,7 +177,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             hintText: 'Email',
             icon: Icon(
               Icons.mail,
-              
+              color: Color.fromRGBO(255, 255, 255, 0.4),
             )),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
         onSaved: (value) => _email = value.trim(),
@@ -180,7 +187,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   Widget showPasswordInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(30.0, 15.0, 50.0, 0.0),
       child: TextFormField(
         maxLines: 1,
         obscureText: true,
@@ -189,6 +196,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             hintText: 'Password',
             icon: Icon(
               Icons.lock,
+              color: Color.fromRGBO(255, 255, 255, 0.4),
             )),
         validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
         onSaved: (value) => _password = value.trim(),
@@ -199,33 +207,33 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
   Widget showSecondaryButton() {
     return FlatButton(
         child: Text(
-            _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300)),
+            _isLoginForm ? 'Create an account' : 'Have an account? Login.',
+            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w100)),
         onPressed: toggleFormMode);
   }
 
   Widget showPrimaryButton() {
-    return Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 10.0),
+    return Container(
+      margin: EdgeInsets.fromLTRB(60, 0, 60, 0),
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 180.0),
         child: SizedBox(
-          width: 40.0,
-          height: 45.0,
-          child: OutlineButton(
-            borderSide: BorderSide(
-              color: Colors.grey[600],
-              style: BorderStyle.solid,
-              width: 0.4,
-            ),
+          height: 55.0,
+          child: RaisedButton(
+            elevation: 3.0,
+            color: Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
                 
             ),
-            color: Colors.transparent,
-            child: Text(_isLoginForm ? 'Login' : 'Create account',
+            
+            child: Text(_isLoginForm ? 'Login' : 'Create Account',
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal)
             ),
             onPressed: validateAndSubmit,
           ),
-        ));
+        ),      
+      )
+    );
   }
 }

@@ -4,12 +4,13 @@ class DarkFlavor{
   static ThemeData theme(){
     return ThemeData(
       brightness: Brightness.dark,
-      scaffoldBackgroundColor: Color(0X7F162447),
-      primarySwatch: Colors.deepPurple,
-      accentColor: Color(0XFFe43f5a),
+      scaffoldBackgroundColor: Color(0XAF2B2C2E),
+      primarySwatch: Colors.teal,
+      primaryColor: Colors.deepPurple[800],
+      accentColor: Color(0XFF4a66e2),
       primaryColorBrightness: Brightness.dark,
       accentColorBrightness: Brightness.dark,
-      fontFamily: 'SFPro',
+      // fontFamily: 'SFPro',
       colorScheme: ColorScheme(
         primary: Color(0XFF162447), 
         primaryVariant: Color(0XFF1F4068), 
