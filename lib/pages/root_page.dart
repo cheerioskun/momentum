@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:momentum_app/models/argument_wrappers.dart';
+import 'package:momentum_app/pages/feed_page.dart';
 import 'package:momentum_app/pages/welcome_page.dart';
 import 'package:momentum_app/services/authentication.dart';
 
@@ -69,11 +70,11 @@ class _RootPageState extends State<RootPage> {
         return buildWaitingScreen();
         break;
       case AuthStatus.NOT_LOGGED_IN:
-        return WelcomePage(arguments: LoginArguments(auth: widget.auth, callBack: loginCallback, userId: ""));
+        return WelcomePage(arguments: LoginArguments(auth: widget.auth, loginCallback: loginCallback, logoutCallback: logoutCallback, userId: ""));
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          Navigator.of(context).pushNamed('/feed', arguments: {'userId': _userId, 'auth': widget.auth, 'logoutCallback': logoutCallback}); 
+          return FeedPage(auth: widget.auth, logoutCallback: logoutCallback, userId: _userId); 
         }
         break;
       default:

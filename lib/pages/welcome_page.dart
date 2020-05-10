@@ -11,8 +11,6 @@ class WelcomePage extends StatelessWidget {
   final LoginArguments arguments;
   @override
   Widget build(BuildContext context) {
-    print("INSIDE WELCOME");
-    
     return Scaffold(
       body:Padding(
         padding: const EdgeInsets.fromLTRB(10.0,195.0,0.0,0.0),
@@ -165,7 +163,7 @@ class WelcomePage extends StatelessWidget {
                 onTap: (){
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => LoginSignupPage(auth: arguments.auth, loginCallback: arguments.callBack),
+                      builder: (context) => LoginSignupPage(auth: arguments.auth, loginCallback: arguments.loginCallback, logoutCallback: arguments.logoutCallback,),
                     )
                   );
                 },
