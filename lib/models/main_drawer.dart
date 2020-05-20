@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({Key key}) : super(key: key);
-
+  const MainDrawer({Key key, this.logoutCallback}) : super(key: key);
+  final VoidCallback logoutCallback;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -27,8 +27,44 @@ class MainDrawer extends StatelessWidget {
                 ),
               )
             ),
-            
+
+            DrawerButton(icon: Icons.mail, title: "Dashboard", tapCallback: () => {},),
+            DrawerButton(icon: Icons.mail, title: "Dashboard", tapCallback: () => {},),
+            DrawerButton(icon: Icons.mail, title: "Dashboard", tapCallback: () => {},),
+            DrawerButton(icon: Icons.mail, title: "Dashboard", tapCallback: () => {},),
+            DrawerButton(icon: Icons.mail, title: "Dashboard", tapCallback: () => {},),
+            Expanded(child: DrawerButton(icon: Icons.exit_to_app, title: "Logout", tapCallback: logoutCallback,),)
           ],
         ));
+  }
+}
+
+class DrawerButton extends StatelessWidget {
+  const DrawerButton({Key key, this.icon, this.title, this.tapCallback}) : super(key: key);
+  final IconData icon;
+  final String title;
+  final dynamic tapCallback;
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
+      onTap: tapCallback,
+    );
+
+    // return Container(
+    //   child: SizedBox(
+    //     height: 40,
+    //     child: Row(children: <Widget>[
+    //       Padding(
+    //         padding: const EdgeInsets.only(right: 15.0),
+    //         child: Icon(icon, ),
+    //       ),
+    //       Text(title, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18)),
+    //       ],
+    //       mainAxisAlignment: MainAxisAlignment.center,
+    //     )
+    //   ),
+    // );
   }
 }

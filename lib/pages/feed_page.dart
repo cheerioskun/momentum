@@ -18,7 +18,7 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: MainDrawer(),
+        drawer: MainDrawer(logoutCallback: widget.logoutCallback,),
         floatingActionButton:
             RaisedButton(onPressed: widget.logoutCallback, color: Colors.blue),
         body: Container(
