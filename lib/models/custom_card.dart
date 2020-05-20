@@ -2,22 +2,58 @@
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({Key key, this.title, this.difficulty}) : super(key: key);
+  const CustomCard({Key key, this.title, this.problemId, this.judge, this.description, this.difficulty, this.acCallback, this.deleteCallback}) : super(key: key);
   final String title;
+  final String problemId;
+  final String judge;
+  final String description;
+  final dynamic acCallback;
+  final dynamic deleteCallback;
   final int difficulty;
   @override
   Widget build(BuildContext context) {
-    Color colorToPaint;
-    if(difficulty == null || difficulty < 1200){
-      colorToPaint = Color.fromRGBO(50, 200, 50, 1.0);
-    }else if(difficulty < 1700){
-      colorToPaint = Color.fromRGBO(150, 50, 50, 1.0);
-    }else{
-      colorToPaint = Color.fromRGBO(200, 20, 10, 1.0);
-    }
+    final length = 150;
     return Container(
-      color: colorToPaint,
-      child: Text((title == null?"":title), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),),
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(255, 255, 255, 0.2),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Text(title, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20.0), textAlign: TextAlign.left,),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: Row(children: <Widget>[
+              Text(problemId, style: TextStyle(color: Colors.grey[400], fontSize: 14.0)),
+              Text(" » " + judge, style: TextStyle(color: Colors.blue[300], fontSize: 14.0)),
+            ],),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+            child: Text(
+              (description.length > length)?description.substring(0, length) + "...": description,
+      
+            ),
+          )
+        ],
+      )
+    );
+  }
+}
+
+class Description extends StatelessWidget {
+  const Description({Key key, this.description, this.length}) : super(key: key);
+  final String description;
+  final int length;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      (description.length > length)?description.substring(0, length): description,
+
     );
   }
 }

@@ -10,7 +10,7 @@ class DarkFlavor{
       accentColor: Color(0XFF4a66e2),
       primaryColorBrightness: Brightness.dark,
       accentColorBrightness: Brightness.dark,
-      // fontFamily: 'SFPro',
+      //fontFamily: 'SFPro',
       colorScheme: ColorScheme(
         primary: Color(0XFF162447), 
         primaryVariant: Color(0XFF1F4068), 
