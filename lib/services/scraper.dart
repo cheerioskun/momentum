@@ -27,7 +27,38 @@ class Scraper{
     switch(judge){
       case "codeforces":
         Element data = document.querySelector('div.problem-statement');
-        print(data.innerHtml);
+        if(data == null){
+          print("INVALID PROBLEM_ID");
+        }else{
+          title = data.querySelector('.title').innerHtml;
+          StringBuffer desc = new StringBuffer();
+          List<Element> paragraphs = data.querySelectorAll('p');
+          for(Element p in paragraphs){
+            String content = p.innerHtml;
+            int flag = 0;
+            for(int i = 0;i < content.length; ++i){
+              if(content[i] == '<'){
+                flag++;
+              }else if(content[i] == '>'){
+                flag--;
+              }else if(flag == 0){
+                if(content[i] == '\$'){
+                  i += 2;
+                }else if(content[i] == ' '){
+                  while(i + 1 < content.length && content[i + 1] == ' ') i++;
+                  desc.write(content[i]);
+                }
+                else{
+                  desc.write(content[i]);
+                }
+              }
+            }
+            desc.write('\n');
+          }
+          description = desc.toString();
+        }
+        print(title);
+        print(description);
         break;
       default:
 

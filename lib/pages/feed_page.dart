@@ -20,7 +20,7 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController idControl, judgeControl;
+    TextEditingController idControl = new TextEditingController(), judgeControl = new TextEditingController();
     return Scaffold(
         drawer: MainDrawer(logoutCallback: widget.logoutCallback,),
         body: Column(
@@ -53,7 +53,7 @@ class _FeedPageState extends State<FeedPage> {
                       ),
                       buttons: [
                         DialogButton(
-                          onPressed: () => {print("HELLO")},
+                          onPressed: () => {Scraper(problemId: idControl.text, judge: judgeControl.text).initiate()},
                           child: Text(
                             "Find",
                             style: TextStyle(color: Colors.white, fontSize: 20),
