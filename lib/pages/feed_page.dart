@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:momentum_app/models/custom_card.dart';
 import 'package:momentum_app/models/main_drawer.dart';
 import 'package:momentum_app/services/authentication.dart';
+import 'package:momentum_app/services/scraper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class FeedPage extends StatefulWidget {
@@ -19,16 +20,15 @@ class FeedPage extends StatefulWidget {
 class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController idControl, judgeControl;
     return Scaffold(
         drawer: MainDrawer(logoutCallback: widget.logoutCallback,),
         body: Column(
           children: <Widget>[
-
             Padding(
               padding: const EdgeInsets.only(top:100),
               child: RaisedButton(
                 child: Text('Click'),
-                color: Colors.black,
                 onPressed: (){
                   return Alert(
                       context: context,
@@ -36,12 +36,14 @@ class _FeedPageState extends State<FeedPage> {
                       content: Column(
                         children: <Widget>[
                           TextField(
+                            controller: idControl,
                             decoration: InputDecoration(
                               icon: Icon(Icons.remove_from_queue),
                               labelText: 'QuestionId',
                             ),
                           ),
                           TextField(
+                            controller: judgeControl,
                             decoration: InputDecoration(
                               icon: Icon(Icons.lock),
                               labelText: 'Judge',
@@ -51,7 +53,7 @@ class _FeedPageState extends State<FeedPage> {
                       ),
                       buttons: [
                         DialogButton(
-                          onPressed: () => {},
+                          onPressed: () => {print("HELLO")},
                           child: Text(
                             "Find",
                             style: TextStyle(color: Colors.white, fontSize: 20),

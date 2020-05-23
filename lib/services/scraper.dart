@@ -12,6 +12,7 @@ class Scraper{
   String title;
   List<String> tags;
   Future initiate() async{
+    print("Here");
     Client client = Client();
     String url;
     switch(judge){
